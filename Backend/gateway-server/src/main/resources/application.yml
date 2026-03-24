@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: gateway-server
+server:
+  port: 4040
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL}
+    fetch-registry: true
