@@ -1,0 +1,109 @@
+services:
+  db-auth:
+    image: postgres:18
+    container_name: db-auth
+    restart: always
+    environment:
+      POSTGRES_DB: "vaku-auth"
+      POSTGRES_USER: "vakuAuth"
+      POSTGRES_PASSWORD: "o*w14Q8483LN*#GD"
+    ports:
+      - "5432:5432"
+    volumes:
+      - auth_data:/var/lib/postgresql
+      - ./DataBase/db-auth.sql:/docker-entrypoint-initdb.d/db-auth.sql
+
+  db-inventary:
+    image: postgres:18
+    container_name: db-inventary
+    restart: always
+    environment:
+      POSTGRES_DB: "vaku-inventary"
+      POSTGRES_USER: "vakuInventary"
+      POSTGRES_PASSWORD: "6!a3q1H@!O!5q*VA"
+    ports:
+      - "5433:5432"
+    volumes:
+      - inventary_data:/var/lib/postgresql
+      - ./DataBase/db-inventary.sql:/docker-entrypoint-initdb.d/db-inventary.sql
+
+  db-core:
+    image: postgres:18
+    container_name: db-core
+    restart: always
+    environment:
+      POSTGRES_DB: "vaku-core"
+      POSTGRES_USER: "vakuCore"
+      POSTGRES_PASSWORD: "98MLIyg#7E6!D*Yy"
+    ports:
+      - "5434:5432"
+    volumes:
+      - core_data:/var/lib/postgresql
+      - ./DataBase/db-core.sql:/docker-entrypoint-initdb.d/db-core.sql
+
+  db-notification:
+    image: postgres:18
+    container_name: db-notification
+    restart: always
+    environment:
+      POSTGRES_DB: "vaku-notification"
+      POSTGRES_USER: "vakuNotification"
+      POSTGRES_PASSWORD: "#Vw*BrG9pv!211%8"
+    ports:
+      - "5435:5432"
+    volumes:
+      - notification_data:/var/lib/postgresql
+      - ./DataBase/db-notification.sql:/docker-entrypoint-initdb.d/db-notification.sql
+
+  db-reports:
+    image: postgres:18
+    container_name: db-reports
+    restart: always
+    environment:
+      POSTGRES_DB: "vaku-reports"
+      POSTGRES_USER: "vakuReports"
+      POSTGRES_PASSWORD: "pou!y40217&!*N^g"
+    ports:
+      - "5436:5432"
+    volumes:
+      - reports_data:/var/lib/postgresql
+      - ./DataBase/db-reports.sql:/docker-entrypoint-initdb.d/db-reports.sql
+
+  db-audit:
+    image: postgres:18
+    container_name: db-audit
+    restart: always
+    environment:
+      POSTGRES_DB: "vaku-audit"
+      POSTGRES_USER: "vakuAudit"
+      POSTGRES_PASSWORD: "V#6Qd18^Ng7p@S@F"
+    ports:
+      - "5437:5432"
+    volumes:
+      - audit_data:/var/lib/postgresql
+      - ./DataBase/db-audit.sql:/docker-entrypoint-initdb.d/db-audit.sql
+
+  redis:
+    image: redis:8
+    container_name: redis-cache
+    restart: always
+    ports:
+      - "6379:6379"
+    command: >
+      redis-server
+      --requirepass RT^FVt3#38%&#2v!
+      --loglevel warning
+      --maxmemory 64mb
+      --maxmemory-policy allkeys-lru
+      --appendonly no
+    volumes:
+      - cache_data:/data
+
+volumes:
+  auth_data:
+  inventary_data:
+  core_data:
+  notification_data:
+  reports_data:
+  audit_data:
+  cache_data:
