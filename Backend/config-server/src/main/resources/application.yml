@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          default-label: main
+          password: ${GIT_TOKEN}
+          username: NelsonZarazaDev
+          clone-on-start: 'true'
+          uri: 'https://github.com/NelsonZarazaDev/vaku-microservice-config'
+  application:
+    name: config-server
+  profiles:
+    active: default
+eureka:
+  instance:
+    instance-id: "${spring.application.name}:${random.value}"
+  client:
+    service-url:
+      defaultZone: "${EUREKA_URL}"
+server:
+  port: '7777'
