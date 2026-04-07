@@ -11,16 +11,16 @@ CREATE TABLE department
 (
     id         SERIAL PRIMARY KEY,
     name       VARCHAR(50) NOT NULL,
-    country_id INT NOT NULL,
-    FOREIGN KEY (country_id) REFERENCES country(id)
+    country_id INT         NOT NULL,
+    FOREIGN KEY (country_id) REFERENCES country (id)
 );
 
 CREATE TABLE city
 (
     id            SERIAL PRIMARY KEY,
     name          VARCHAR(50) NOT NULL,
-    department_id INT NOT NULL,
-    FOREIGN KEY (department_id) REFERENCES department(id)
+    department_id INT         NOT NULL,
+    FOREIGN KEY (department_id) REFERENCES department (id)
 );
 
 CREATE TABLE document_type
@@ -31,7 +31,7 @@ CREATE TABLE document_type
     regex      VARCHAR(255) NOT NULL,
     min_length SMALLINT     NOT NULL,
     max_length SMALLINT     NOT NULL,
-    country_id varchar(5)   NOT NULL,
+    country_id INT          NOT NULL,
     CONSTRAINT fk_country_id FOREIGN KEY (country_id) REFERENCES country (id)
 );
 
