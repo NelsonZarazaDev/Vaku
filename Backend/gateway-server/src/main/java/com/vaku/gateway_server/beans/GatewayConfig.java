@@ -17,6 +17,7 @@ public class GatewayConfig {
                 .route("department", r -> r.path("/core-server/department/**").uri("lb://core-server"))
                 .route("city", r -> r.path("/core-server/city/**").uri("lb://core-server"))
                 .route("documentType", r -> r.path("/core-server/documentType/**").uri("lb://core-server"))
+                .route("bloodType", r -> r.path("/core-server/bloodType/**").uri("lb://core-server"))
                 .build();
     }
 
