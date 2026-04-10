@@ -47,7 +47,7 @@ CREATE TABLE health_center
     id         uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     name       VARCHAR(255)                   NOT NULL,
     status     BOOLEAN          DEFAULT true  NOT NULL,
-    city_id    VARCHAR(5)                     NOT NULL,
+    city_id    int                     NOT NULL,
     created_at TIMESTAMPTZ      DEFAULT now() NOT NULL,
     update_at  TIMESTAMPTZ,
     delete_at  TIMESTAMPTZ,
