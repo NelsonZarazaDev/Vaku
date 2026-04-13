@@ -11,16 +11,16 @@ CREATE TABLE department
 (
     id         SERIAL PRIMARY KEY,
     name       VARCHAR(50) NOT NULL,
-    country_id INT NOT NULL,
-    FOREIGN KEY (country_id) REFERENCES country(id)
+    country_id INT         NOT NULL,
+    FOREIGN KEY (country_id) REFERENCES country (id)
 );
 
 CREATE TABLE city
 (
     id            SERIAL PRIMARY KEY,
     name          VARCHAR(50) NOT NULL,
-    department_id INT NOT NULL,
-    FOREIGN KEY (department_id) REFERENCES department(id)
+    department_id INT         NOT NULL,
+    FOREIGN KEY (department_id) REFERENCES department (id)
 );
 
 CREATE TABLE document_type
@@ -31,7 +31,7 @@ CREATE TABLE document_type
     regex      VARCHAR(255) NOT NULL,
     min_length SMALLINT     NOT NULL,
     max_length SMALLINT     NOT NULL,
-    country_id varchar(5)   NOT NULL,
+    country_id INT          NOT NULL,
     CONSTRAINT fk_country_id FOREIGN KEY (country_id) REFERENCES country (id)
 );
 
@@ -47,7 +47,7 @@ CREATE TABLE health_center
     id         uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     name       VARCHAR(255)                   NOT NULL,
     status     BOOLEAN          DEFAULT true  NOT NULL,
-    city_id    VARCHAR(5)                     NOT NULL,
+    city_id    int                     NOT NULL,
     created_at TIMESTAMPTZ      DEFAULT now() NOT NULL,
     update_at  TIMESTAMPTZ,
     delete_at  TIMESTAMPTZ,

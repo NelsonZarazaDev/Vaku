@@ -1,0 +1,35 @@
+#      .ENV DEL IDE EUREKA_URL=http://localhost:8761/eureka/
+
+spring:
+  application:
+    name: core-server
+  datasource:
+    url: ${db.url}
+    username: ${db.username}
+    password: ${db.password}
+    hikari:
+      maximum-pool-size: ${db.maximum-pool-size}
+      connection-timeout: ${db.connection-timeout}
+  profiles:
+    default: default
+  config:
+    import: "optional:configserver:${CONFIG_SERVER_HOST}"
+server:
+  servlet:
+    context-path: /core-server
+  port: 0
+eureka:
+  instance:
+    instance-id: "${spring.application.name}:${random.value}"
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL}
+logging:
+  level:
+    org:
+      hibernate:
+        sql: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
